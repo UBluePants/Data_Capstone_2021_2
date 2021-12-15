@@ -6,12 +6,12 @@
 ### 과제 주요 내용
 Face dataset 으로부터 occluded face dataset 을 생성 혹은 occluded face dataset 을 수집
 dataset 구성
-- Paired dataset(synthetic occlusion) : Face-de-occlusion dataset https://github.com/xweiyuan/Face-de-occlusion-using-3D-morphable-model-and-generative-adversarial-network
-- non-paired dataset(natural occlusion) : Real world Occluded Faces https://github.com/ekremerakin/RealWorldOccludedFaces
-- 
+- Paired dataset(synthetic occlusion) : Face-de-occlusion dataset (https://github.com/xweiyuan/Face-de-occlusion-using-3D-morphable-model-and-generative-adversarial-network)
+- non-paired dataset(natural occlusion) : ROF-Real world Occluded Faces (https://github.com/ekremerakin/RealWorldOccludedFaces)
+
 선정된 GAN을 이용한 Occluded face recovery
-- 사용한 모델 : https://github.com/swordcheng/OA-GAN (source code for "Semi-Supervised Natural Face De-Occlusion") 
-- 
+- 사용 모델-Occlusion Aware GAN (https://github.com/swordcheng/OA-GAN)
+
 PSNR, SSIM 을 통한 원본 이미지와의 비교
 
 모델 구조 변경을 통한 성능 향상
