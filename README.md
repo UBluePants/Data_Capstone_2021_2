@@ -22,10 +22,17 @@ PSNR, SSIM 을 통한 원본 이미지와의 비교
 얼굴 이미지 복원에 관한 여러 논문들을 찾아보고, 조작된 occlusion과 자연적으로 생긴 occlusion을 번갈아가며 학습해, 자연적으로 생긴 occlusion에 대한 일반화 성능을 높인 OA-GAN에 흥미가 생겼고, 해당 모델에 대해 공부 및 성능을 높여보고 싶어 선정했다.
 
 ### 가이드라인 논문 이해 
-해당 논문에서는 
 ![image](https://user-images.githubusercontent.com/33544078/146284695-4513ddae-9d09-4002-96b7-01016820a3f0.png)
-구조를 통해 occlusion area를 복원시켰다.
+OA-GAN의 구조이다. WGAN의 loss 함수와 Gradient penalty regularization을 적용했다.
 
 #### Generator
+Generator는 Occlusion-aware module과 Face-completion module로 나뉜다.
+
+##### Occlusion aware module 
+convolution, transpose convolution과 Residual Block을 이용해 Occluded image의 feature map을 얻는다.
+이 feature map에 convolution + sigmoid 를 통해 Occlusion mask(Occlusion area를 시각화한 mask)를 얻는다.
+Occlusion mask와 occluded face image에 대해 element wise 곱을 하게 되면 occlsion area가 제거된 face image를 얻는다.
+
+##### face completion module
 
 
