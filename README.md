@@ -1,9 +1,9 @@
 # Data_Capstone_2021_2
 
-### 주제 선정 배경 
+## 주제 선정 배경 
 일반적인 얼굴 인식의 경우 얼굴 사진 데이터에 방해요소 없이 온전한 상태의 얼굴 형태가 많다. 하지만 실세계에서 우리가 얼굴을 인식할 때에는 마스크나 선글라스로 얼굴의 부분이 가려져 있거나, 혹은 사진 자체적으로 얼굴 전체를 담지 못하는 경우가 많다. 이런 부분을 감안한 얼굴 인식을 수행하기 위해 손상된 얼굴 사진으로부터 온전한 얼굴 사진을 얻을 필요가 있다.
 
-### 과제 주요 내용
+## 과제 주요 내용
 Face dataset 으로부터 occluded face dataset 을 생성 혹은 occluded face dataset 을 수집
 dataset 구성
 - Paired dataset(synthetic occlusion) : Face-de-occlusion dataset (https://github.com/xweiyuan/Face-de-occlusion-using-3D-morphable-model-and-generative-adversarial-network)
@@ -18,4 +18,14 @@ PSNR, SSIM 을 통한 원본 이미지와의 비교
 
 ## 과제 세부 내용
 
-### 데이터셋 
+### 가이드라인 논문 선정
+얼굴 이미지 복원에 관한 여러 논문들을 찾아보고, 조작된 occlusion과 자연적으로 생긴 occlusion을 번갈아가며 학습해, 자연적으로 생긴 occlusion에 대한 일반화 성능을 높인 OA-GAN에 흥미가 생겼고, 해당 모델에 대해 공부 및 성능을 높여보고 싶어 선정했다.
+
+### 가이드라인 논문 이해 
+해당 논문에서는 
+![image](https://user-images.githubusercontent.com/33544078/146284695-4513ddae-9d09-4002-96b7-01016820a3f0.png)
+구조를 통해 occlusion area를 복원시켰다.
+
+#### Generator
+
+
