@@ -151,7 +151,7 @@ Feature extractor로 사용된 VGG16 대신, Resnet34의 layer들로 feature ext
 - SSIM :  0.022 향상
 - OA-GAN(원본)은 물론, DRAGAN algorithm과 Spectral normalization + Gradient penalty를 사용한 모델에 비해 적은 수치를 보였다.
 
-### 결론 및 아쉬운 점 
+## 결론 및 아쉬운 점 
 - OA-GAN에 여러 기법을 적용해봤지만 원본 모델보다 좋은 성능이 나오는 기법을 찾지 못했다.
 - 더 많은 데이터셋으로 학습시켜 natural occlusion에 대해서도 좋은 복원 능력을 보여줬으면 좋았을 것 이라고 생각한다.
 - GAN은 데이터의 분포를 학습하는 신경망이고 이를 학습하는 과정에서 목적 함수로 사용되는 데이터 분포간의 거리를 어떤 거리(distance)를 사용하고 해당 거리에 대한 깊은 이해가 필요하다는 것을 깨달았다. 적용한 기법들이 왜 원 모델보다 성능이 더 잘 나오지 않았는가에 대해서 추가적인 공부를 진행할 예정이다.
