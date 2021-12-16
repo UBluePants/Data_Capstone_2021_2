@@ -23,16 +23,19 @@ PSNR, SSIM 을 통한 원본 이미지와의 비교
 
 ### 가이드라인 논문 이해 
 ![image](https://user-images.githubusercontent.com/33544078/146284695-4513ddae-9d09-4002-96b7-01016820a3f0.png)
-OA-GAN의 구조이다. WGAN의 loss 함수와 Gradient penalty regularization을 적용했다.
+- OA-GAN의 구조이다. WGAN의 loss 함수와 Gradient penalty regularization을 적용했다.
+- 간단하게 설명하자면, occluded face image 에서 face feature와 occluded area를 얻어 이를 이용해 복원된 얼굴을 생성하는 모델이다.
+- 자세한 설명은 https://ieeexplore.ieee.org/document/9195444 본문에서 확인할 수 있다.
 
-#### Generator
-Generator는 Occlusion-aware module과 Face-completion module로 나뉜다.
+### 데이터셋 선정
+- 가이드라인 모델을 적용하기 위해 두 가지의 데이터셋이 필요했다.
+- 얼굴 이미지와 그 이미지에 인공적으로 occlusion 을 생성시킨 Paired dataset
+- 자연적으로 occlusion이 생성되어 있는 Non-paired dataset 
 
-##### Occlusion aware module 
-convolution, transpose convolution과 Residual Block을 이용해 Occluded image의 feature map을 얻는다.
-이 feature map에 convolution + sigmoid 를 통해 Occlusion mask(Occlusion area를 시각화한 mask)를 얻는다.
-Occlusion mask와 occluded face image에 대해 element wise 곱을 하게 되면 occlsion area가 제거된 face image를 얻는다.
+#### Paired dataset 
+- 처음 시도는 LFW dataset (http://vis-www.cs.umass.edu/lfw/) 에 10x10, 15x10, 20x20 크기의 black image를 위에 덮어 씌워 생성 해보려 했다.
+- ![Aaron_Eckhart_0001_occ_15](https://user-images.githubusercontent.com/33544078/146288415-f170a92a-4897-4957-981d-7eeb9878217e.jpg) occluded data
 
-##### face completion module
+
 
 
