@@ -70,8 +70,20 @@ PSNR, SSIM 을 통한 원본 이미지와의 비교
 - SSIM : 0.93
 - 가이드라인 논문보다 더 좋은 점수가 나왔지만, 이는 복원하기 전 데이터셋에 대한 PSNR, SSIM 자체가 높을 것이라 생각했고 따라서 복원 전 PSNR, SSIM에 비해 얼마나 올랐는지를 다시 구했다.
 - PSNR : 7.6 향상
-- SSIM : 0.02 향상 
-- 확인할 수 있었다.
+- SSIM : 0.02 향상을 확인할 수 있었다.
+
+#### DRAGAN algorithm 도입
+
+##### DRAGAN (On Convergence and Stability of GANs, https://arxiv.org/abs/1705.07215)
+- DRAGAN은 WGAN의 Lipschiptz 제약 조건을 해결하기 위한 방법 중 하나인 Gradient penalty regularization을 발전시킨 알고리즘이다.
+- Gradient Penalty는 실제 데이터와 생성된 데이터 모두를 고려하여 gradient에 penalty를 주지만, DRAGAN algorithm은 실제 데이터만을 고려하기 때문에 이미지 복원 시 실제 얼굴과 더 가깝게 복원될 것이라 생각하여 적용해봐았다.
+- 학습시킬 때 사용한 hyperparameter는 hyperparameter 폴더에 업로드 했다. 
+
+##### recovery of synthetic occluded face
+- ![image](https://user-images.githubusercontent.com/33544078/146297694-a15784ba-a786-4111-bdec-c92eca2964d3.png) ![image](https://user-images.githubusercontent.com/33544078/146297699-1f0861e5-fa76-4a91-9c03-9d163d4a417b.png) ![image](https://user-images.githubusercontent.com/33544078/146297713-2aaa5858-d7a7-4c54-966d-e06f5bafdca4.png)
+- 
+
+
 
 
 
