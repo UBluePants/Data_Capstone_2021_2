@@ -81,14 +81,37 @@ PSNR, SSIM 을 통한 원본 이미지와의 비교
 
 ##### recovery of synthetic occluded face
 - ![image](https://user-images.githubusercontent.com/33544078/146297694-a15784ba-a786-4111-bdec-c92eca2964d3.png) ![image](https://user-images.githubusercontent.com/33544078/146297699-1f0861e5-fa76-4a91-9c03-9d163d4a417b.png) ![image](https://user-images.githubusercontent.com/33544078/146297713-2aaa5858-d7a7-4c54-966d-e06f5bafdca4.png)
-- 
+- 차례대로 synthetic occluded face, recovered face, original face이다. 
+- synthetic data에 대해서 시각적으로는 gradient penalty를 사용한 것과 비슷한 수준으로 복원되었다.
 
+##### recovery of natural occluded face 
+- ![image](https://user-images.githubusercontent.com/33544078/146298720-92809ac1-425c-44f0-bc29-29dcf3e74292.png) ![image](https://user-images.githubusercontent.com/33544078/146298731-11adf6b7-a8d7-4a74-9dc6-404ea82ec083.png)
+- 마찬가지로 gradient penalty 를 사용한 것과 비슷한 수준으로 복원되었다.
 
+##### PSNR, SSIM
+- PSNR : 7.3 향상
+- SSIM : 0.022 향상
+- gradient penalty를 사용했을 때 보다 소폭 하락한 모습을 확인할 수 있었다.
 
+#### DRAGAN algorithm, Instance normalization in discriminator
+- OA-GAN에서는 discriminator에 instance normalization 을 사용하지 않았는데 discriminator에 instance normalization을 추가하면 효과적이지 않을까란 생각으로 적용했다.
+- 학습시킬 때 사용한 hyperparameter는 hyperparameter 폴더에 업로드 했다. 
 
+##### recovery of synthetic occluded face
+-![image](https://user-images.githubusercontent.com/33544078/146299733-d6fee9cc-3e98-400d-b17f-c39bd91ed62b.png) ![image](https://user-images.githubusercontent.com/33544078/146299746-6043a29c-9044-4978-ace0-2bc07f88a39b.png) ![image](https://user-images.githubusercontent.com/33544078/146299755-f17a5b79-25d5-49fb-80b4-596df343e031.png)
+- 차례대로 synthetic occluded face, recovered face, original face이다.
+- 위의 두 방법에 비해 훨씬 안 좋은 복원 능력을 보여줬다.
+- ![image](https://user-images.githubusercontent.com/33544078/146300091-d9bb8bf6-9b13-4294-a43b-fbbe15e2977c.png)
+- 위 사진은 occlusion area를 시각화한 occluson mask 인데, occlusion area를 잘 잡아내지 못하는 모습을 보여줬다(occlusion 부분이 검은색). 
 
+##### recovery of natural occluded face 
+- ![image](https://user-images.githubusercontent.com/33544078/146300344-ffb3e7a7-b15c-4daf-8cca-c1b4f7dd9196.png) ![image](https://user-images.githubusercontent.com/33544078/146300354-1f1d2443-5725-4f1a-ba11-c805421d5f44.png)
+- 마찬가지로 위의 두 방법에 비해 안 좋은 복원 능력을 보여줬다.
 
-
+##### PSNR, SSIM
+- PSNR : 0.54 향상
+- SSIM : 0.26 감소
+- gradient penalty, DRAGAN만을 사용했을 때보다 PSNR의 향상 정도는 급격히 감소했고, SSIM은 오히려 감소하는 모습을 보여줬다.
 
 
 
