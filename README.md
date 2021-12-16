@@ -34,7 +34,13 @@ PSNR, SSIM 을 통한 원본 이미지와의 비교
 
 #### Paired dataset 
 - 처음 시도는 LFW dataset (http://vis-www.cs.umass.edu/lfw/) 에 10x10, 15x10, 20x20 크기의 black image를 위에 덮어 씌워 생성 해보려 했다.
-- ![Aaron_Eckhart_0001_occ_15](https://user-images.githubusercontent.com/33544078/146288415-f170a92a-4897-4957-981d-7eeb9878217e.jpg) occluded data
+- ![Aaron_Eckhart_0001](https://user-images.githubusercontent.com/33544078/146288521-a8078277-e044-426b-8117-c8a4fbad9180.jpg)
+- an example of orignal data
+- ![Aaron_Eckhart_0001_occ_15](https://user-images.githubusercontent.com/33544078/146288415-f170a92a-4897-4957-981d-7eeb9878217e.jpg) 
+- an example of occluded data(occluded with 15x15 black image) 
+- 위 사진과 같이 black image로 occluded image를 생성하려 했으나, natural occluded image 복원을 위해서는 일반화 측면에서 안 좋을 것이라고 생각했고, 다른 dataset을 찾았다.
+
+
 
 
 
