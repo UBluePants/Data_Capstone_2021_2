@@ -49,7 +49,7 @@ PSNR, SSIM 을 통한 원본 이미지와의 비교
 - 위 사진과 같이 깨끗한 이미지와 occluded 이미지가 짝을 이루고 있진 않다. occlusion은 sunglasses와 mask 두 가지의 occlusion이 존재한다.
 - Training set은 2768 장의 occluded face, 4698장의 non-occluded face로 이루어져 있고, testset은 692장의 occluded face, 1174장의 non-occluded face로 이루어져 있다.
 
-### 모델 학습
+### 모델 학습 및 
 
 #### OA-GAN 학습
 - 가이드라인 논문에서 구조를 변경하지 않고 그대로 학습시켰다.
@@ -131,13 +131,30 @@ PSNR, SSIM 을 통한 원본 이미지와의 비교
 - 마찬가지로 완벽하진 않지만 잘 복원된 모습을 보여줬다.
 
 ##### PSNR, SSIM
-- PSNR :  7.22
-- SSIM :  0.027
+- PSNR :  7.22 향상
+- SSIM :  0.027 향상
 - 수치적으로는 어느 정도 향상되었지만, 수정하지 않은 OA-GAN에 비해서는 약간 낮은 모습을 확인할 수 있었다.
 
-#### Resnet Feature extractor 
+#### Resnet Feature extractor, label smoothing 
+Feature extractor로 사용된 VGG16 대신, Resnet34의 layer들로 feature extractor를 대신하였고, lipschitz constraint 해결 방법으로는 Spectral normalization, Gradient penalty를 동시에 사용하였다. 또한 paired dataset의 label을 one-hot encoding 이 아닌 0.9로 smoothing을 해주었다.
 
+##### recovery of synthetic occluded face
+- ![image](https://user-images.githubusercontent.com/33544078/146391909-b079eef8-3743-495f-9c05-27fff7e509ad.png) ![image](https://user-images.githubusercontent.com/33544078/146391937-c9090102-4bfc-4091-ab53-8e10fcc3277c.png) ![image](https://user-images.githubusercontent.com/33544078/146391948-46586342-113e-4b9d-b08d-6d7a0f37fdc2.png)
+- occlusion area의 잔상이 남아있지만 어느 정도 잘 복원된 모습을 보여줬다.
 
+##### recovery of natural occluded face 
+- ![image](https://user-images.githubusercontent.com/33544078/146392193-cccfc2ff-917e-49bd-a9b9-84b534734d8b.png) ![image](https://user-images.githubusercontent.com/33544078/146392215-caaba625-a976-4408-afd9-36d8774c312f.png)
+- 눈 코 입이 생성되려는 모습은 보이지만, 매우 흐리고 얼굴 형태만 알아볼 수 있어 복원이 잘 되었다고 보긴 어렵다.
+
+##### PSNR, SSIM
+- PSNR :  0.69 향상
+- SSIM :  0.022 향상
+- OA-GAN(원본)은 물론, DRAGAN algorithm과 Spectral normalization + Gradient penalty를 사용한 모델에 비해 적은 수치를 보였다.
+
+### 결론 및 아쉬운 점 
+- OA-GAN에 여러 기법을 적용해봤지만 원본 모델보다 좋은 성능이 나오는 기법을 찾지 못했다.
+- 더 많은 데이터셋으로 학습시켜 natural occlusion에 대해서도 좋은 복원 능력을 보여줬으면 좋았을 것 이라고 생각한다.
+- GAN은 데이터의 분포를 학습하는 신경망이고 이를 학습하는 과정에서 목적 함수로 사용되는 데이터 분포간의 거리를 어떤 거리(distance)를 사용하고 해당 거리에 대한 깊은 이해가 필요하다는 것을 깨달았다. 적용한 기법들이 왜 원 모델보다 성능이 더 잘 나오지 않았는가에 대해서 추가적인 공부를 진행할 예정이다.
 
 
 
