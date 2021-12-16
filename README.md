@@ -70,7 +70,7 @@ PSNR, SSIM 을 통한 원본 이미지와의 비교
 - SSIM : 0.93
 - 가이드라인 논문보다 더 좋은 점수가 나왔지만, 이는 복원하기 전 데이터셋에 대한 PSNR, SSIM 자체가 높을 것이라 생각했고 따라서 복원 전 PSNR, SSIM에 비해 얼마나 올랐는지를 다시 구했다.
 - PSNR : 7.6 향상
-- SSIM : 0.02 향상을 확인할 수 있었다.
+- SSIM : 0.029 향상을 확인할 수 있었다.
 
 #### DRAGAN algorithm 도입
 
@@ -112,6 +112,32 @@ PSNR, SSIM 을 통한 원본 이미지와의 비교
 - PSNR : 0.54 향상
 - SSIM : 0.26 감소
 - gradient penalty, DRAGAN만을 사용했을 때보다 PSNR의 향상 정도는 급격히 감소했고, SSIM은 오히려 감소하는 모습을 보여줬다.
+
+#### Spectral normalization (Spectral Normalization for Generative Adversarial Networks, https://arxiv.org/abs/1802.05957)
+- Lipschitz 제약을 해결하기 위한 방법 중 하나인 Spectral normalization을 discriminator에 적용해봤다.
+- Spectral normalization 은 discriminator의 weight에 weight의 Singular value 중 가장 큰 값(spectral norm)을 나눠줌으로써 네트워크의 lipschitz norm을 1보다 작게 만들어주는 normalization 기법이다.
+- 학습 중간에 생성되는 이미지들을 확인해본 결과, occlusion area를 잘 찾아내지 못하는 모습을 보여줘서 끝까지 학습시키진 않았다.
+
+#### Spectral Nomralization with Gradient penalty
+- Spectral nomralization에 gradient penalty를 추가하면 어떨까 싶어서 적용해봤다.
+- 학습시킬 때 사용한 hyperparameter는 hyperparameter 폴더에 업로드 했다. 
+
+##### recovery of synthetic occluded face
+- ![image](https://user-images.githubusercontent.com/33544078/146302458-e4767250-521e-4afa-bdd5-745a390e050b.png) ![image](https://user-images.githubusercontent.com/33544078/146302463-a66c2bfd-f217-42da-bf8a-f8e70f9666c6.png) ![image](https://user-images.githubusercontent.com/33544078/146302467-8409aa1c-8ea3-4421-9dd0-8d77dde18768.png)
+- 시각적으로는 상당히 잘 복원된 모습을 보여줬다.
+
+##### recovery of natural occluded face 
+- ![image](https://user-images.githubusercontent.com/33544078/146302554-923da7b6-5f67-49d0-9edf-1c2dad9b9267.png) ![image](https://user-images.githubusercontent.com/33544078/146302561-e6825315-f0fe-4da4-80bc-a4ae76511af8.png)
+- 마찬가지로 완벽하진 않지만 잘 복원된 모습을 보여줬다.
+
+##### PSNR, SSIM
+- PSNR :  7.22
+- SSIM :  0.027
+- 수치적으로는 어느 정도 향상되었지만, 수정하지 않은 OA-GAN에 비해서는 약간 낮은 모습을 확인할 수 있었다.
+
+#### Resnet Feature extractor 
+
+
 
 
 
