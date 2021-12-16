@@ -54,7 +54,7 @@ PSNR, SSIM 을 통한 원본 이미지와의 비교
 #### OA-GAN 학습
 - 가이드라인 논문에서 구조를 변경하지 않고 그대로 학습시켰다.
 - 학습시킬 때 사용한 hyperparameter는 hyperparameter 폴더에 업로드 했다. 
-- ![00619694-Train__w_GT_w_attr-1_batch_occ_img](https://user-images.githubusercontent.com/33544078/146291911-16109e97-af46-4f5d-b645-850fb3005986.png) ![00619694-Train__w_GT_w_attr-4_batch_fake_img_synthesis](https://user-images.githubusercontent.com/33544078/146291927-458b73e2-f7f7-4498-af94-e1ebf645e865.png) ![00619694-Train__w_GT_w_attr-5_batch_none_occ_img](https://user-images.githubusercontent.com/33544078/146291942-6f7ef643-5b1f-44b8-8859-7fc7bfba0e22.png)
+- ![image](https://user-images.githubusercontent.com/33544078/146293094-b677524f-e207-4949-a40c-04a121fe95e3.png) ![image](https://user-images.githubusercontent.com/33544078/146293105-f27e5649-2303-46e0-b2e0-16d71dbd3c1f.png) ![image](https://user-images.githubusercontent.com/33544078/146293109-04891d09-81ab-4223-a8d9-b3b8dcc274e8.png)
 
 
 
