@@ -1,0 +1,46 @@
+------------ Options -------------
+D_adam_b1: 0.5
+D_adam_b2: 0.999
+GT_test_root: /content/drive/Othercomputers/내 노트북/data/Synthetic/test/GT_test
+GT_train_root: /content/drive/Othercomputers/내 노트북/data/Synthetic/train/GT_train
+G_adam_b1: 0.5
+G_adam_b2: 0.999
+Synthetic_test_root: /content/drive/Othercomputers/내 노트북/data/Synthetic/test/occ_test
+Synthetic_train_root: /content/drive/Othercomputers/내 노트북/data/Synthetic/train/occ_train
+attr_nc: 509
+batch_size: 16
+checkpoints_dir: /content/drive/Othercomputers/내 노트북/data/check_points
+display_freq_s: 600
+fake_real_rate: 10
+gpu_ids: [0]
+image_size: 128
+is_train: True
+lambda_D_attr: 1000
+lambda_D_gp: 10
+lambda_D_prob: 1
+lambda_g_hash: 1
+lambda_g_hole: 6
+lambda_g_perceptual: 0.05
+lambda_g_style: 120
+lambda_g_syhth_smooth: 1e-05
+lambda_g_valid: 1
+lambda_mask: 1
+lambda_mask_smooth: 1e-05
+load_epoch: 50
+lr_D: 0.0001
+lr_G: 0.0001
+model: FOAFCGAN_alternate_training
+n_threads_test: 1
+n_threads_train: 1
+name: Experiment_1203_SN_D_with_GP
+nepochs_decay: 5
+nepochs_no_decay: 45
+non_occ_test_root: /content/drive/Othercomputers/내 노트북/data/Natural/test/non_occ
+non_occ_train_root: /content/drive/Othercomputers/내 노트북/data/Natural/train/non_occ
+num_iters_validate: 1
+occ_test_root: /content/drive/Othercomputers/내 노트북/data/Natural/test/occ
+occ_train_root: /content/drive/Othercomputers/내 노트북/data/Natural/train/occ
+print_freq_s: 300
+save_latest_freq_s: 3600
+train_G_every_n_iterations: 5
+-------------- End ----------------
