@@ -36,7 +36,29 @@ PSNR, SSIM 을 통한 원본 이미지와의 비교
 - 처음 시도는 LFW dataset (http://vis-www.cs.umass.edu/lfw/) 에 10x10, 15x10, 20x20 크기의 black image를 위에 덮어 씌워 생성 해보려 했다.
 - ![Aaron_Eckhart_0001](https://user-images.githubusercontent.com/33544078/146288521-a8078277-e044-426b-8117-c8a4fbad9180.jpg) ![Aaron_Eckhart_0001_occ_15](https://user-images.githubusercontent.com/33544078/146288415-f170a92a-4897-4957-981d-7eeb9878217e.jpg) 
 - an example of synthetic occlusion(15 x 15 black image)
-- 위 사진과 같이 black image로 occluded image를 생성하려 했으나, natural occluded image 복원을 위해서는 일반화 측면에서 안 좋을 것이라고 생각했고, 다른 dataset을 찾았다.
+- 위 사진과 같이 black image로 occluded image를 생성하려 했으나, natural occluded image 복원을 위해서는 일반화 측면에서 안 좋을 것이라고 생각해 다른 dataset을 이용했다.
+
+- Face De-occlusion dataset (https://github.com/xweiyuan/Face-de-occlusion-using-3D-morphable-model-and-generative-adversarial-network)
+- ![image_train_0001](https://user-images.githubusercontent.com/33544078/146289299-5432fcbc-00b8-40e5-bc1a-0d6eed2a1102.jpg) ![image_train_0001_cup1](https://user-images.githubusercontent.com/33544078/146289314-92842e4c-6883-403b-8d84-cd7655f21587.jpg)
+- 위 사진과 같이 한 사람의 얼굴에 대해 여러가지 종류의 synthetic occlusion으로 구성되어 있다. 
+- training set은 400명의 Ground Truth(400명의 얼굴)에 대해 24633장의 occluded face로 이루어져 있고, testset은 222명의 Ground truth에 대해 13217장의 occluded face로 구성되어있다.
+
+#### Non-paired dataset
+- ROF-Real world Occluded Faces (https://github.com/ekremerakin/RealWorldOccludedFaces)
+- ![780](https://user-images.githubusercontent.com/33544078/146290551-da8c0f58-0f7b-40aa-a645-42aa85bf6c1f.jpg) ![40](https://user-images.githubusercontent.com/33544078/146290574-8f968458-441f-4d1d-be98-613f5c219ef3.jpg)
+- 위 사진과 같이 깨끗한 이미지와 occluded 이미지가 짝을 이루고 있진 않다. occlusion은 sunglasses와 mask 두 가지의 occlusion이 존재한다.
+- Training set은 2768 장의 occluded face, 4698장의 non-occluded face로 이루어져 있고, testset은 692장의 occluded face, 1174장의 non-occluded face로 이루어져 있다.
+
+### 모델 학습
+
+#### OA-GAN 학습
+- 가이드라인 논문에서 구조를 변경하지 않고 그대로 학습시켰다.
+- 학습시킬 때 사용한 hyperparameter는 hyperparameter 폴더에 업로드 했다. 
+- ![00619694-Train__w_GT_w_attr-1_batch_occ_img](https://user-images.githubusercontent.com/33544078/146291911-16109e97-af46-4f5d-b645-850fb3005986.png) ![00619694-Train__w_GT_w_attr-4_batch_fake_img_synthesis](https://user-images.githubusercontent.com/33544078/146291927-458b73e2-f7f7-4498-af94-e1ebf645e865.png) ![00619694-Train__w_GT_w_attr-5_batch_none_occ_img](https://user-images.githubusercontent.com/33544078/146291942-6f7ef643-5b1f-44b8-8859-7fc7bfba0e22.png)
+
+
+
+
 
 
 
