@@ -54,8 +54,24 @@ PSNR, SSIM 을 통한 원본 이미지와의 비교
 #### OA-GAN 학습
 - 가이드라인 논문에서 구조를 변경하지 않고 그대로 학습시켰다.
 - 학습시킬 때 사용한 hyperparameter는 hyperparameter 폴더에 업로드 했다. 
-- ![image](https://user-images.githubusercontent.com/33544078/146293094-b677524f-e207-4949-a40c-04a121fe95e3.png) ![image](https://user-images.githubusercontent.com/33544078/146293105-f27e5649-2303-46e0-b2e0-16d71dbd3c1f.png) ![image](https://user-images.githubusercontent.com/33544078/146293109-04891d09-81ab-4223-a8d9-b3b8dcc274e8.png)
 
+##### recovery of synthetic occluded face 
+- ![image](https://user-images.githubusercontent.com/33544078/146293094-b677524f-e207-4949-a40c-04a121fe95e3.png) ![image](https://user-images.githubusercontent.com/33544078/146293105-f27e5649-2303-46e0-b2e0-16d71dbd3c1f.png) ![image](https://user-images.githubusercontent.com/33544078/146293109-04891d09-81ab-4223-a8d9-b3b8dcc274e8.png)
+- 차례대로 synthetic occluded face, recovered face, original face이다. 
+- synthetic data에 대해서는 좋은 복원 능력을 보여줬다.
+
+##### recovery of natural occluded face 
+- ![image](https://user-images.githubusercontent.com/33544078/146293918-bb3e8ccd-6227-4615-8359-f3e7e13cc054.png) ![image](https://user-images.githubusercontent.com/33544078/146293924-48d6fb6a-cf06-4abb-883f-94d36013c290.png)
+- natural occluded face, recovered face 이다. 
+- paired dataset에 비해 좋지 않은 복원 능력이 보여졌다. 
+
+##### PSNR, SSIM
+- PSNR : 26.35
+- SSIM : 0.93
+- 가이드라인 논문보다 더 좋은 점수가 나왔지만, 이는 복원하기 전 데이터셋에 대한 PSNR, SSIM 자체가 높을 것이라 생각했고 따라서 복원 전 PSNR, SSIM에 비해 얼마나 올랐는지를 다시 구했다.
+- PSNR : 7.6 향상
+- SSIM : 0.02 향상 
+- 확인할 수 있었다.
 
 
 
