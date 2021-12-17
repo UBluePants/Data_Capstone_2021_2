@@ -13,7 +13,8 @@ from models.base_model import BaseModel
 from models.modules.base_module import ModuleFactory
 import utils.util as util
 from models.modules.vgg import VGG16FeatureExtractor
-
+from models.modules.Resnet import Resnet34FeatureExtractor
+from IQA_pytorch import SSIM
 
 class FOAFCGAN_alternate_training(BaseModel):
 
@@ -40,14 +41,14 @@ class FOAFCGAN_alternate_training(BaseModel):
 
         self._G = self._create_generator()
         self._G.init_weights()
-        self._G = torch.nn.DataParallel(self._G, device_ids=[0])
+        self._G = self._G.to(self._device)
 
         self._D = self._create_discriminator()
-        # self._D.init_weights()
-        self._D = torch.nn.DataParallel(self._D, device_ids=[0])
+        self._D.init_weights()
+        self._D = self._D.to(self._device)
 
         self._vgg = VGG16FeatureExtractor()
-        self._vgg = torch.nn.DataParallel(self._vgg, device_ids=[0])
+        self._vgg = self._vgg.to(self._device)
 
     def _create_generator(self):
         return ModuleFactory.get_by_name('generator_wgan')
@@ -216,8 +217,9 @@ class FOAFCGAN_alternate_training(BaseModel):
         self._loss_g_mask = -torch.mean(fake_img_mask).pow(2) * self._opt.lambda_mask
         self._loss_g_mask_smooth = self._compute_loss_smooth(fake_img_mask) * self._opt.lambda_mask_smooth
         self._loss_g_synth_smooth = self._compute_loss_smooth(fake_img_synthesis) * self._opt.lambda_g_syhth_smooth
-        self._PSNR = 20 * torch.log10(128.0 / torch.sqrt(torch.mean((fake_img_synthesis - self._img_none_occ) ** 2)))
-        
+        self._PSNR = 20 * torch.log10(2 / torch.sqrt(torch.mean((fake_img_synthesis - self._img_none_occ) ** 2)))
+       
+         
         if keep_data_for_visuals:
 
             self._vis_batch_occ_img = util.tensor2im(self._input_img_occ, idx=-1)
@@ -232,7 +234,7 @@ class FOAFCGAN_alternate_training(BaseModel):
                 self._loss_g_mask_smooth + self._loss_g_synth_smooth +\
                 self._loss_g_vaild + self._loss_g_hole + \
                 self._loss_g_perceptual + self._loss_g_style + \
-                self._loss_g_attr # + self._loss_g_mask_hash + \
+                self._loss_g_attr# + self._loss_g_mask_hash + \
 
         elif has_GT == False and has_attr == True:
             return self._loss_g_synthesis_fake + self._loss_g_mask + \
@@ -323,20 +325,8 @@ class FOAFCGAN_alternate_training(BaseModel):
                                      ('d_fake', self._loss_d_fake.item()),
                                      ('d_gp', self._loss_d_gp.item()),
                                      ('d_attr', self._loss_d_attr),
-                                     ('PSNR', self._PSNR),
+                                     ('PSNR', self._PSNR)
                                      ])
-        elif has_GT == False and has_attr == True:
-            loss_dict = OrderedDict([('g_mskd_fake', self._loss_g_synthesis_fake.item()),
-                         ('g_m_mean', self._loss_g_mask.item()),
-                         ('g_m_smooth', self._loss_g_mask_smooth.item()),
-                         # ('g_m_hash', self._loss_g_mask_hash.item()),
-                         ('g_generate_face_smooth', self._loss_g_synth_smooth.item()),
-                         ('g_attr', self._loss_g_attr),
-                         ('d_real', self._loss_d_real.item()),
-                         ('d_fake', self._loss_d_fake.item()),
-                         ('d_gp', self._loss_d_gp.item()),
-                         ('d_attr', self._loss_d_attr)
-                         ])
 
         elif has_GT == False and has_attr == False:
             loss_dict = OrderedDict([('g_mskd_fake', self._loss_g_synthesis_fake.item()),
@@ -408,3 +398,4 @@ class FOAFCGAN_alternate_training(BaseModel):
         for param_group in self._optimizer_D.param_groups:
             param_group['lr'] = self._current_lr_D
         print('update D learning rate: %f -> %f' %  (self._current_lr_D + lr_decay_D, self._current_lr_D))
+
