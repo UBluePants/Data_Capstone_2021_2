@@ -157,7 +157,15 @@ Feature extractor로 사용된 VGG16 대신, Resnet34의 layer들로 feature ext
 - GAN은 데이터의 분포를 학습하는 신경망이고 이를 학습하는 과정에서 목적 함수로 사용되는 데이터 분포간의 거리를 어떤 거리(distance)를 사용하고 해당 거리에 대한 깊은 이해가 필요하다는 것을 깨달았다. 적용한 기법들이 왜 원 모델보다 성능이 더 잘 나오지 않았는가에 대해서 추가적인 공부를 진행할 예정이다.
 
 ## 참고 자료
+- J. Cai, H. Han, J. Cui, J. Chen, L. Liu, and S. K. Zhou. “Semi-supervised natural face de-occlusion”. IEEE Transactions on Information Forensics and Security, vol. 16, pp. 1044–1057, 2020.
+- Martin Arjovsky, Soumith Chintala, and Léon Bottou. "Wasserstein gan". arXiv preprint arXiv:1701.07875, 2017.
+- Ishaan Gulrajani, Faruk Ahmed, Martin Arjovsky, Vincent Dumoulin, and Aaron Courville. "Improved training of wasserstein gans". arXiv preprint arXiv:1704.00028, 2017.
 
+- Naveen Kodali, Jacob Abernethy, James Hays Zsolt Kira. "On convergence and stability of GANs". https://arxiv.org/pdf/1705.07215.pdf
+- Takeru Miyato, Toshiki Kataoka, Masanori Koyama, Yuichi Yoshida. "Spectral Normalization for Generative Adversarial Networks". ICLR2018
+
+- ROF-Real world Occluded Faces (https://github.com/ekremerakin/RealWorldOccludedFaces)
+- Face De-occlusion dataset (https://github.com/xweiyuan/Face-de-occlusion-using-3D-morphable-model-and-generative-adversarial-network) 
 
 
 
